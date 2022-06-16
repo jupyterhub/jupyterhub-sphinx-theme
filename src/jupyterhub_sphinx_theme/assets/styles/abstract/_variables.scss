@@ -1,0 +1,14 @@
+/* Overriding Book Theme colors to standardize for JupyterHub */
+html[data-theme=light] {
+  --pst-color-primary: #f37726;
+  --pst-color-secondary: #4e4e4e;
+  --sd-color-primary: var(--pst-color-primary);
+  --sd-color-secondary: var(--pst-color-secondary);
+}
+
+html[data-theme=dark] {
+  --pst-color-primary: #f37726;
+  --pst-color-secondary: #bebebe;
+  --sd-color-primary: var(--pst-color-primary);
+  --sd-color-secondary: var(--pst-color-secondary);
+}

@@ -1,2 +1,5 @@
 # jupyterhub-sphinx-theme
-A lightweight wrapper theme for Sphinx based on the PyData Sphinx Theme
+
+## Build this theme locally
+
+See [docs/index.md](docs/index.md).
