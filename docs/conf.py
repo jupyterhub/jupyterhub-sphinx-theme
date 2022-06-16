@@ -38,8 +38,7 @@ html_sourcelink_suffix = ""
 html_static_path = ["_static"]
 
 
-html_theme_options = {
-}
+html_theme_options = {}
 html_context = {
     "github_user": "jupyterhub",
     "github_repo": "jupyterhub-sphinx-theme",
