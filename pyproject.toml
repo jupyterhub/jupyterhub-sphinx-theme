@@ -1,5 +1,5 @@
 [build-system]
-requires = ["sphinx-theme-builder >= 0.2.0a7"]
+requires = ["sphinx-theme-builder"]
 build-backend = "sphinx_theme_builder"
 
 [tool.sphinx-theme-builder]
@@ -14,7 +14,8 @@ urls = { Organization = "https://jupyter.org" }
 
 requires-python = ">=3.8"
 dependencies = [
-  "pydata-sphinx-theme>=0.8",
+  "myst-parser",
+  "pydata-sphinx-theme",
   "sphinx-copybutton",
 ]
 
@@ -41,7 +42,7 @@ classifiers = [
 
 [project.optional-dependencies]
 dev = [
-  'sphinx-theme-builder[cli] >= 0.2.0a7"',
+  'sphinx-theme-builder[cli]',
 ]
 
 [project.entry-points]
