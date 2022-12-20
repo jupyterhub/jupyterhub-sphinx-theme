@@ -15,9 +15,9 @@ Here is a brief summary:
 - Adds a light/dark mode JupyterHub logo
 - Adds a favicon
 
-:::{note}
+```{note}
 If there are other standard features/customizations that would be helpful across the JupyterHub team documentation, we can probably add it here so please open an issue to discuss.
-:::
+```
 
 ## How to use this theme
 
