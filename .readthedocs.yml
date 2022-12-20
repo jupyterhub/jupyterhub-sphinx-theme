@@ -9,7 +9,7 @@ build:
     python: "3.9"
 
 sphinx:
-  configuration: conf.py
+  configuration: docs/conf.py
 
 # Explicitly opt out of trying to build additional formats such as PDF and ePub
 formats: []
