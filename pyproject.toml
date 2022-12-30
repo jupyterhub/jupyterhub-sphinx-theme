@@ -17,6 +17,7 @@ dependencies = [
   "myst-parser",
   "pydata-sphinx-theme",
   "sphinx-copybutton",
+  "sphinxext-opengraph"
 ]
 
 license = { file = "LICENSE"}
