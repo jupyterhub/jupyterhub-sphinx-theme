@@ -6,18 +6,29 @@ It makes minimal changes to the `pydata-sphinx-theme` in order to standardize st
 ## Defaults this theme sets
 
 This theme sets a few default values to standardize the look and feel across JupyterHub documentation.
-Here is a brief summary:
-
-- Sets the primary color to a slightly-darkened "Jupyter orange"
-- Removes primary color from headers and makes them bold to be noticeable
-- Adds icon links for our Discourse, Team Compass, and Jupyter.org
-- Aligns the header links to the left
-- Adds a light/dark mode JupyterHub logo
-- Adds a favicon
 
 ```{note}
 If there are other standard features/customizations that would be helpful across the JupyterHub team documentation, we can probably add it here so please open an issue to discuss.
 ```
+
+Here is a brief summary:
+
+### Style
+
+- Sets the primary color to a slightly-darkened "Jupyter orange"
+- Removes primary color from headers and makes them bold to be noticeable
+- Aligns the header links to the left
+
+### Logo and branding
+
+- Adds a light/dark mode JupyterHub logo
+- Adds a favicon
+- Adds icon links for our Discourse, Team Compass, and Jupyter.org
+
+### Extensions
+
+- [`sphinx-copybutton`](https://sphinx-copybutton.readthedocs.io/) for copy buttons in our code cells.
+- [`sphinxext-opengraph`](https://sphinxext-opengraph.readthedocs.io/en/latest/) for OpenGraph protocol metadata. `site_url` will automatically be detected via `ReadTheDocs` or `GitHub Actions` environment variables in CI/CD.
 
 ## How to use this theme
 
