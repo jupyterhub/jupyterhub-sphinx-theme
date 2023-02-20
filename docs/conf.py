@@ -10,8 +10,6 @@ version = "0.0.1a"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    # Need to add this in addition to the HTML theme below
-    "jupyterhub_sphinx_theme",
     "myst_parser",
 ]
 

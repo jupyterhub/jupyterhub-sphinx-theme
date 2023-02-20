@@ -9,8 +9,17 @@ THEME_PATH = (Path(__file__).parent / "theme" / "jupyterhub-sphinx-theme").resol
 
 logger = logging.getLogger(__name__)
 
-def set_config_defaults(app, config):
-    theme = config.html_theme_options
+
+def _config_provided_by_user(app, key):
+    """Check if the user has manually provided the config.
+    REMOVE when pydata v0.14 is released and import from there.
+    """
+    return any(key in ii for ii in [app.config.overrides, app.config._raw_config])
+
+
+def set_config_defaults(app):
+    config = app.config
+    theme = app.builder.theme_options
     if not theme:
         theme = {}
 
@@ -48,13 +57,15 @@ def set_config_defaults(app, config):
     if not logo:
         logo = {}
     if "image_dark" not in logo:
-        logo["image_dark"] = "images/hub-rectangle-dark.svg"
+        path_dark = THEME_PATH / "static" / "images/hub-rectangle-dark.svg"
+        logo["image_dark"] = str(path_dark.resolve())
     if "image_light" not in logo:
-        logo["image_light"] = "images/hub-rectangle.svg"
+        path_light = THEME_PATH / "static" / "images/hub-rectangle.svg"
+        logo["image_light"] = str(path_light.resolve())
     theme["logo"] = logo
 
     # Update the HTML theme config
-    config.__dict__["html_theme_options"] = theme
+    app.builder.theme_options = theme
 
     # Sphinxext Opengraph add URL based on ReadTheDocs variables
     # auto-generate this so that we don't have to manually add it in each documentation.
@@ -69,13 +80,31 @@ def set_config_defaults(app, config):
         site_url = None
     if site_url and not hasattr(config, "ogp_site_url"):
         logger.info("Setting `ogp_site_url` via CI/CD environment variables...")
-        config.__dict__["ogp_site_url"] = site_url
+        config.ogp_site_url = site_url
+
+
+def _activate_extensions_after_config_inited(app, extensions):
+    """Activate extensions and trigger the config-inited event.
+
+    This ensures that new extensions have their event hooks triggered, but that old
+    ones don't trigger twice.
+    """
+    # Save the old event listeners and then replace with an empty list
+    old_listeners = app.events.listeners["config-inited"]
+    app.events.listeners["config-inited"] = []
+    # Activate extensions which will re-add new extensions to listeners["config-inited"]
+    for extension in extensions:
+        app.setup_extension(extension)
+    # Trigger config-inited so that their hooks fire
+    app.emit("config-inited", app.config)
+    # Now add back the old extension list
+    app.events.listeners["config-inited"][:0] = old_listeners
+
 
 def setup(app):
     app.add_html_theme("jupyterhub_sphinx_theme", THEME_PATH)
     app.config.html_static_path.append(str(THEME_PATH / "static"))
-    app.connect("config-inited", set_config_defaults)
+    extensions = ["sphinx_copybutton", "sphinxext.opengraph"]
+    _activate_extensions_after_config_inited(app, extensions)
+    app.connect("builder-inited", set_config_defaults)
 
-    # Activate extensions
-    for extension in ["sphinx_copybutton", "sphinxext.opengraph"]:
-        app.setup_extension(extension)
