@@ -36,7 +36,13 @@ html_sourcelink_suffix = ""
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
 
-html_theme_options = {}
+html_theme_options = {
+    "icon_links": [            {
+                "name": "GitHub",
+                "url": "https://github.com/jupyterhub/jupyterhub-sphinx-theme",
+                "icon": "fa-brands fa-github",
+            },]
+}
 html_context = {
     "github_user": "jupyterhub",
     "github_repo": "jupyterhub-sphinx-theme",

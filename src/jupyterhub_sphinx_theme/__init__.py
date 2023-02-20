@@ -24,9 +24,9 @@ def set_config_defaults(app):
         theme = {}
 
     # Default jupyter favicon
-    if not config.html_favicon:
-        config.__dict__["html_favicon"] = (
-            "https://github.com/jupyter/design/raw/master/logos/Favicon/favicon.png"
+    if not _config_provided_by_user(app, "html_favicon"):
+        config.html_favicon = (
+            "https://github.com/jupyterhub/jupyterhub-sphinx-theme/raw/master/src/jupyterhub_sphinx_theme/theme/jupyterhub-sphinx-theme/static/favicon.png"
         )
 
     # Navigation bar
@@ -57,15 +57,12 @@ def set_config_defaults(app):
     if not logo:
         logo = {}
     if "image_dark" not in logo:
-        path_dark = THEME_PATH / "static" / "images/hub-rectangle-dark.svg"
+        path_dark = THEME_PATH / "static" / "hub-rectangle-dark.svg"
         logo["image_dark"] = str(path_dark.resolve())
     if "image_light" not in logo:
-        path_light = THEME_PATH / "static" / "images/hub-rectangle.svg"
+        path_light = THEME_PATH / "static" / "hub-rectangle.svg"
         logo["image_light"] = str(path_light.resolve())
     theme["logo"] = logo
-
-    # Update the HTML theme config
-    app.builder.theme_options = theme
 
     # Sphinxext Opengraph add URL based on ReadTheDocs variables
     # auto-generate this so that we don't have to manually add it in each documentation.
@@ -81,6 +78,10 @@ def set_config_defaults(app):
     if site_url and not hasattr(config, "ogp_site_url"):
         logger.info("Setting `ogp_site_url` via CI/CD environment variables...")
         config.ogp_site_url = site_url
+
+    # Clean up actions
+    # Update the HTML theme config
+    app.builder.theme_options = theme
 
 
 def _activate_extensions_after_config_inited(app, extensions):
@@ -107,4 +108,3 @@ def setup(app):
     extensions = ["sphinx_copybutton", "sphinxext.opengraph"]
     _activate_extensions_after_config_inited(app, extensions)
     app.connect("builder-inited", set_config_defaults)
-
