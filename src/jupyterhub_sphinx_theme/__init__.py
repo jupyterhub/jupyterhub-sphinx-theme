@@ -19,7 +19,10 @@ def _config_provided_by_user(app, key):
 
 def set_config_defaults(app):
     config = app.config
-    theme = app.builder.theme_options
+    try:
+        theme = app.builder.theme_options
+    except AttributeError:
+        theme = None
     if not theme:
         theme = {}
 
