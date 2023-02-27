@@ -41,9 +41,9 @@ Follow these steps:
    # in requirements.txt
    git+https://github.com/jupyterhub/jupyterhub-sphinx-theme
    ```
-  
+
    or to install locally
-  
+
    ```console
    $ pip install git+https://github.com/jupyterhub/jupyterhub-sphinx-theme
    ```
@@ -51,14 +51,14 @@ Follow these steps:
 
    ```{code-block} python
    :caption: conf.py
-   
+
    html_theme = "jupyterhub_sphinx_theme"
    ```
 3. Add it to your theme's extensions:
 
    ```{code-block} python
    :caption: conf.py
-   
+
    extensions = [
       "jupyterhub_sphinx_theme"
    ]
@@ -111,5 +111,10 @@ $ nox -s docs-live
 
 ## Make a release
 
-To make a release, [make a release on GitHub](https://github.com/jupyterhub/jupyterhub-sphinx-theme/releases).
+To make a release:
+
+- update the version number in `src/jupyterhub_sphinx_theme/__init__.py`
+- push the changes
+- [make a release on GitHub](https://github.com/jupyterhub/jupyterhub-sphinx-theme/releases).
+
 When you finish this process, a GitHub Action will trigger to package and upload the release to PyPI.
