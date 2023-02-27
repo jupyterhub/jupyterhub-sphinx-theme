@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 from sphinx.util import logging
 
-__version__ = "0.0.1"
+__version__ = "0.0.3"
 
 THEME_PATH = (Path(__file__).parent / "theme" / "jupyterhub-sphinx-theme").resolve()
 
