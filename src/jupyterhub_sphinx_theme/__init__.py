@@ -29,7 +29,7 @@ def set_config_defaults(app):
     # Default jupyter favicon
     if not _config_provided_by_user(app, "html_favicon"):
         config.html_favicon = (
-            "https://github.com/jupyterhub/jupyterhub-sphinx-theme/raw/master/src/jupyterhub_sphinx_theme/theme/jupyterhub-sphinx-theme/static/favicon.png"
+            "https://github.com/jupyterhub/jupyterhub-sphinx-theme/raw/main/src/jupyterhub_sphinx_theme/theme/jupyterhub-sphinx-theme/static/favicon.ico"
         )
 
     # Navigation bar
