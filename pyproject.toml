@@ -75,4 +75,4 @@ message_template = "Bump to {new_version}"
 tag_template = "{new_version}"
 
 [[tool.tbump.file]]
-src = "jupyterhub-sphinx-theme/__init__.py"
+src = "src/jupyterhub_sphinx_theme/__init__.py"
