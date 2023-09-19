@@ -5,7 +5,7 @@ build-backend = "sphinx_theme_builder"
 [tool.sphinx-theme-builder]
 # ref, pydata-sphinx-theme's node version: https://github.com/pydata/pydata-sphinx-theme/blob/main/pyproject.toml
 # ref, latest node LTS version: https://nodejs.org/en
-node-version = "16.3.2"
+node-version = "16.13.2"
 
 [project]
 name = "jupyterhub-sphinx-theme"
