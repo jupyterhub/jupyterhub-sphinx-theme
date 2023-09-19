@@ -2,19 +2,13 @@
 import os
 from pathlib import Path
 from sphinx.util import logging
+from pydata_sphinx_theme.utils import config_provided_by_user
 
 __version__ = "0.1.0.dev"
 
 THEME_PATH = (Path(__file__).parent / "theme" / "jupyterhub-sphinx-theme").resolve()
 
 logger = logging.getLogger(__name__)
-
-
-def _config_provided_by_user(app, key):
-    """Check if the user has manually provided the config.
-    REMOVE when pydata v0.14 is released and import from there.
-    """
-    return any(key in ii for ii in [app.config.overrides, app.config._raw_config])
 
 
 def set_config_defaults(app):
@@ -26,17 +20,28 @@ def set_config_defaults(app):
     if not theme:
         theme = {}
 
-    # Default jupyter favicon
-    if not _config_provided_by_user(app, "html_favicon"):
+    # Default favicon
+    if not config_provided_by_user(app, "html_favicon"):
         config.html_favicon = (
             "https://github.com/jupyterhub/jupyterhub-sphinx-theme/raw/main/src/jupyterhub_sphinx_theme/theme/jupyterhub-sphinx-theme/static/favicon.ico"
         )
+
+    # Default logo
+    if not config_provided_by_user(app, "html_logo"):
+        logo = theme.get("logo", {})
+        if "image_dark" not in logo:
+            path_dark = THEME_PATH / "static" / "hub-rectangle-dark.svg"
+            logo["image_dark"] = str(path_dark.resolve())
+        if "image_light" not in logo:
+            path_light = THEME_PATH / "static" / "hub-rectangle.svg"
+            logo["image_light"] = str(path_light.resolve())
+        theme["logo"] = logo
 
     # Navigation bar
     if "navbar_align" not in theme:
         theme["navbar_align"] = "left"
 
-    icon_links = [] if "icon_links" not in theme else theme["icon_links"]
+    icon_links = theme.get("icon_links", [])
     icon_links.extend(
         [
             {
@@ -54,18 +59,6 @@ def set_config_defaults(app):
         ]
     )
     theme["icon_links"] = icon_links
-
-    # Default logo
-    logo = {} if "logo" not in theme else theme["logo"]
-    if not logo:
-        logo = {}
-    if "image_dark" not in logo:
-        path_dark = THEME_PATH / "static" / "hub-rectangle-dark.svg"
-        logo["image_dark"] = str(path_dark.resolve())
-    if "image_light" not in logo:
-        path_light = THEME_PATH / "static" / "hub-rectangle.svg"
-        logo["image_light"] = str(path_light.resolve())
-    theme["logo"] = logo
 
     # Sphinxext Opengraph add URL based on ReadTheDocs variables
     # auto-generate this so that we don't have to manually add it in each documentation.

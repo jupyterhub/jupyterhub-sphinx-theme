@@ -4,7 +4,9 @@ build-backend = "sphinx_theme_builder"
 
 
 [tool.sphinx-theme-builder]
-node-version = "16.13.0"
+# ref, pydata-sphinx-theme's node version: https://github.com/pydata/pydata-sphinx-theme/blob/main/pyproject.toml
+# ref, latest node LTS version: https://nodejs.org/en
+node-version = "16.13.2"
 
 
 [project]
@@ -17,9 +19,9 @@ urls = { Organization = "https://jupyter.org" }
 requires-python = ">=3.8"
 dependencies = [
   "myst-parser",
-  "pydata-sphinx-theme>=0.13.0rc4",
+  "pydata-sphinx-theme>=0.14.0",
   "sphinx-copybutton",
-  "sphinxext-opengraph"
+  "sphinxext-opengraph",
 ]
 
 license = { file = "LICENSE"}
@@ -33,11 +35,6 @@ classifiers = [
   "Environment :: Web Environment",
   "Intended Audience :: Developers",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.5",
-  "Programming Language :: Python :: 3.6",
-  "Programming Language :: Python :: 3.7",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
   "Operating System :: OS Independent",
   "Topic :: Documentation",
   "Topic :: Software Development :: Documentation",
