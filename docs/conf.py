@@ -4,7 +4,6 @@
 #
 from datetime import datetime
 
-
 # -- Project information -----------------------------------------------------
 # ref: https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 #

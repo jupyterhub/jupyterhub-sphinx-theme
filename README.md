@@ -47,6 +47,7 @@ Follow these steps:
    ```console
    $ pip install git+https://github.com/jupyterhub/jupyterhub-sphinx-theme
    ```
+
 2. Configure the Sphinx docs to use the theme by editing `conf.py`
 
    ```{code-block} python
@@ -54,6 +55,7 @@ Follow these steps:
 
    html_theme = "jupyterhub_sphinx_theme"
    ```
+
 3. Add it to your theme's extensions:
 
    ```{code-block} python
@@ -95,6 +97,7 @@ To do so, follow these steps:
    ```console
    $ pip install nox
    ```
+
 2. Build the documentation:
 
    ```console
