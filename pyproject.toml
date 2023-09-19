@@ -58,7 +58,7 @@ dev = [
 github_url = "https://github.com/jupyterhub/jupyterhub-sphinx-theme"
 
 [tool.tbump.version]
-current = "0.1.0.dev"
+current = "0.1.0"
 regex = '''
     (?P<major>\d+)
     \.

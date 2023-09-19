@@ -5,7 +5,7 @@ from pathlib import Path
 from pydata_sphinx_theme.utils import config_provided_by_user
 from sphinx.util import logging
 
-__version__ = "0.1.0.dev"
+__version__ = "0.1.0"
 
 THEME_PATH = (Path(__file__).parent / "theme" / "jupyterhub-sphinx-theme").resolve()
 
