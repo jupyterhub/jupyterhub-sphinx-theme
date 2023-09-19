@@ -111,10 +111,4 @@ $ nox -s docs-live
 
 ## Make a release
 
-To make a release:
-
-- update the version number in `src/jupyterhub_sphinx_theme/__init__.py`
-- push the changes
-- [make a release on GitHub](https://github.com/jupyterhub/jupyterhub-sphinx-theme/releases).
-
-When you finish this process, a GitHub Action will trigger to package and upload the release to PyPI.
+Follow the instructions in [RELEASE.md](https://github.com/jupyterhub/jupyterhub-sphinx-theme/blob/main/RELEASE.md)
